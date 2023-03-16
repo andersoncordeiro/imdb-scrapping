@@ -34,6 +34,3 @@ def get_movies(genre):
       print(link.text)
       print(url)
       print('-------------------------------\n')
-      
-      
-get_movies('Drama')
