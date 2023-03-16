@@ -19,6 +19,7 @@ def get_movies(genre):
   URL = 'https://www.imdb.com/calendar/?ref_=nv_mv_cal'
   soup = get_soup(URL)
   lista_lis = soup.find_all('li', class_='ipc-metadata-list-summary-item')
+  dict_movies = {}
   for li in lista_lis:
     link = li.find('a')
     url = 'https://www.imdb.com' + link['href']
@@ -30,7 +31,7 @@ def get_movies(genre):
     except:
       pass
     if genre in list_genres:
-      print(list_genres)
-      print(link.text)
-      print(url)
-      print('-------------------------------\n')
+        codigo = url.split('/')[-2]
+        dict_movies[codigo] = {'url':url,  'genero': list_genres, 'titulo': link.text}
+  
+  return dict_movies
